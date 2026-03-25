@@ -116,6 +116,30 @@ SQLite database stored in `data.db`. Tables:
 - **stacks**: id, name, cover_type, cover_value, created_at
 - **cards**: id, stack_id, name, cover, description, created_at
 
+## ImpactCocoa PostgreSQL/PostGIS skeleton
+
+The current runnable backend still uses the existing `sql.js` sample app.
+
+For the ImpactCocoa architecture work, a new PostgreSQL/PostGIS migration skeleton has been added under `apps/be/db/postgres/`.
+
+It includes:
+
+- a `pg`-based SQL migration runner
+- schema-per-service ownership
+- PostGIS-ready tables for `iam`, `farmer`, `field_ops`, `gis`, `traceability`, `reporting`, `integration`, and `audit`
+
+Run it with:
+
+```bash
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/impactcocoa pnpm --filter be db:pg:migrate
+```
+
+See:
+
+- `apps/be/db/postgres/README.md`
+- `docs/impactcocoa-erd.en.md`
+- `docs/impactcocoa-erd.vi.md`
+
 ## Environment Variables
 
 | Variable | Default | Description |
@@ -143,4 +167,3 @@ This will drop all tables and re-run all migrations.
 _**Note:**_ Only use this in development/testing. Running `db:reset` will erase **all** data from the database.
 
 ```
-
