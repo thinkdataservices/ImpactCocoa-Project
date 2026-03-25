@@ -1,0 +1,7 @@
+packages:
+  - apps/*
+
+ignoredBuiltDependencies:
+  - '@biomejs/biome'
+  - core-js
+  - esbuild

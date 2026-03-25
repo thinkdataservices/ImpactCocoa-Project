@@ -1,0 +1,12 @@
+<svg
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path fill="currentColor" d="M13 4C12.4477 4 12 4.44772 12 5C12 5.55228 12.4477 6 13 6H20V13C20 13.5523 20.4477 14 21 14C21.5523 14 22 13.5523 22 13V5C22 4.44772 21.5523 4 21 4H13ZM13 22C13.5523 22 14 21.5523 14 21C14 20.4477 13.5523 20 13 20H6L6 13C6 12.4477 5.55228 12 5 12C4.44771 12 4 12.4477 4 13V21C4 21.5523 4.44772 22 5 22H13Z"></path>
+</svg>
