@@ -1,8 +1,10 @@
+import 'dotenv/config';
 import { serve } from '@hono/node-server';
 import { serveStatic } from '@hono/node-server/serve-static';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { initDb } from '../db/index.js';
+import { auth } from './auth.js';
 import { cardsRoutes } from './features/cards/index.js';
 import { generalRoutes } from './features/general/index.js';
 import { stacksRoutes } from './features/stacks/index.js';
@@ -16,8 +18,14 @@ app.use(
     origin: ['http://localhost:3000', 'https://thinkdata.creativext.com'],
     allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
   }),
 );
+
+// Better Auth routes
+app.on(['POST', 'GET'], '/api/auth/**', (c) => {
+  return auth.handler(c.req.raw);
+});
 
 // Routes
 app.route('/', generalRoutes);
@@ -40,6 +48,7 @@ async function start() {
   console.log('📦 Database initialized');
   console.log(`🚀 Server: http://localhost:${PORT}`);
   console.log(`📚 Swagger: http://localhost:${PORT}/swagger`);
+  console.log(`🔐 Auth: http://localhost:${PORT}/api/auth`);
   serve({ fetch: app.fetch, port: PORT });
 }
 
