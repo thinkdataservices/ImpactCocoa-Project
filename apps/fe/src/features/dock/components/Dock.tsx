@@ -1,5 +1,4 @@
 import { StackItem, StackMenu } from '@/features/stacks/components';
-import { Button, RoundButton } from '@/shared';
 import { AnimatePresence, motion } from 'framer-motion';
 import type React from 'react';
 import { useMemo, useState } from 'react';
@@ -148,22 +147,24 @@ export function Dock({
 
               {/* Create Button - wrapped to align with stacks */}
               <div className="flex flex-col gap-1 items-center w-14 border-l border-white/15 ps-2 ms-auto">
-                <Button
-                  className="w-12 h-12"
-                  highlight="1"
+                <button
+                  type="button"
+                  className="w-12 h-12 rounded-xl bg-violet-500/80 text-white border border-white/20 hover:bg-violet-500 flex items-center justify-center transition-all"
                   onClick={openCreateMenu}
                   aria-label="Create new card or stack"
                 >
                   <motion.div whileHover={{ rotate: 90, scale: 1.2 }}>
                     <PlusSvg className="w-6 h-6" aria-hidden="true" />
                   </motion.div>
-                </Button>
+                </button>
                 <span className="h-[24px]" aria-hidden="true" />
               </div>
 
               {/* Action Buttons */}
               <div className="items-end flex gap-1 self-start flex-col">
-                <RoundButton
+                <button
+                  type="button"
+                  className="w-6 h-6 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"
                   onClick={() => {
                     setIsSearchOpen((previous) => {
                       const next = !previous;
@@ -173,8 +174,10 @@ export function Dock({
                   aria-label="Search"
                 >
                   <MagnifierSvg className="w-3 h-3" />
-                </RoundButton>
-                <RoundButton
+                </button>
+                <button
+                  type="button"
+                  className="w-6 h-6 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"
                   onClick={() => {
                     setIsCollapsed(true);
                     handleCollapse();
@@ -182,7 +185,7 @@ export function Dock({
                   aria-label="Minimize dock"
                 >
                   <CollapseSvg className="w-3 h-3" />
-                </RoundButton>
+                </button>
               </div>
             </MenuBar>
           </motion.div>

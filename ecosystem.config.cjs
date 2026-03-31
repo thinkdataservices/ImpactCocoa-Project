@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'plugilo-be',
+      name: 'thinkdata-be',
       cwd: './apps/be',
       script: 'bun',
       args: 'run start',
@@ -17,7 +17,7 @@ module.exports = {
       restart_delay: 1000,
     },
     {
-      name: 'plugilo-fe',
+      name: 'thinkdata-fe',
       cwd: './apps/fe',
       script: 'bun',
       args: 'run preview',

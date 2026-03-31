@@ -1,5 +1,12 @@
 import { motion } from 'framer-motion';
-import { Button, type ButtonProps } from '../../../shared/components/Buttons';
+
+const highlightColors: Record<string, string> = {
+  '1': 'bg-violet-500/30 hover:bg-violet-500/40',
+  '2': 'bg-blue-500/30 hover:bg-blue-500/40',
+  '3': 'bg-green-500/30 hover:bg-green-500/40',
+  '4': 'bg-red-500/30 hover:bg-red-500/40',
+  '5': 'bg-yellow-500/30 hover:bg-yellow-500/40',
+};
 
 type StackProps = {
   name: React.ReactNode;
@@ -7,8 +14,8 @@ type StackProps = {
   cardCount?: number;
   active?: boolean;
   hovered?: boolean;
-} & Pick<ButtonProps, 'highlight'> &
-  React.HTMLAttributes<HTMLDivElement>;
+  highlight?: string;
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function StackItem({
   name,
@@ -25,9 +32,9 @@ export function StackItem({
       className={`flex flex-col gap-1 relative items-center w-14 transition-all duration-300 ${active || hovered ? ' scale-[110%]' : ''} ${className}`}
       {...props}
     >
-      <Button className={`w-12 h-12 ${active ? 'ring-1 ring-white' : ''}`} highlight={highlight}>
+      <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white border border-white/20 transition-all ${active ? 'ring-1 ring-white' : ''} ${highlight ? highlightColors[highlight] || '' : 'bg-white/10'}`}>
         {cover || name}
-      </Button>
+      </div>
       <span className="text-[10px] text-white text-center w-full line-clamp-2 leading-tight h-[24px] flex items-start justify-center">
         {name}
       </span>

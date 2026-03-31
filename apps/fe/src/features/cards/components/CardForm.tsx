@@ -1,5 +1,4 @@
 import type { Stack } from '@/features/stacks/types';
-import { Button } from '@/shared';
 import { useState } from 'react';
 import ImagePlaceholderSvg from '~/public/icons/image-placeholder.svg?react';
 import { getPlaceholderImage } from '../api';
@@ -126,12 +125,12 @@ export function CardForm({ card, stacks, onSubmit, onCancel }: CardFormProps) {
 
       {/* Actions - Sticky at bottom */}
       <div className="flex gap-3 pt-4 sticky bottom-0 -mx-6 px-6 -mb-6 pb-6">
-        <Button type="button" onClick={onCancel} className="flex-1 py-3">
+        <button type="button" onClick={onCancel} className="flex-1 py-3 rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-all">
           Cancel
-        </Button>
-        <Button type="submit" highlight="1" className="flex-1 py-3">
+        </button>
+        <button type="submit" className="flex-1 py-3 rounded-xl bg-violet-500/80 text-white border border-white/20 hover:bg-violet-500 transition-all">
           {card ? 'Update' : 'Create'}
-        </Button>
+        </button>
       </div>
     </form>
   );

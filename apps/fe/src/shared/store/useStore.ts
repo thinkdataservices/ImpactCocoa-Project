@@ -24,7 +24,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   rootElement: null,
 
   loadInitialData: async () => {
-    const theme = localStorage.getItem('plugilo-theme') || 'light';
+    const theme = localStorage.getItem('thinkdata-theme') || 'light';
     set({ isLoading: true, error: null, theme });
     try {
       const [stacks, cards] = await Promise.all([stackApi.fetchAll(), cardApi.fetchAll()]);
@@ -49,7 +49,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   switchTheme: (theme?: string) => {
     const nextTheme = theme || (get().theme === 'dark' ? 'light' : 'dark');
     set({ theme: nextTheme });
-    localStorage.setItem('plugilo-theme', nextTheme);
+    localStorage.setItem('thinkdata-theme', nextTheme);
   },
 
   setRootElement: (element: HTMLElement | null) => {

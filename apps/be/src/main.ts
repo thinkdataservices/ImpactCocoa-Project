@@ -13,7 +13,7 @@ const PORT = Number(process.env.PORT) || 8000;
 app.use(
   '*',
   cors({
-    origin: ['http://localhost:3000', 'https://plugilo.creativext.com'],
+    origin: ['http://localhost:3000', 'https://thinkdata.creativext.com'],
     allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
   }),

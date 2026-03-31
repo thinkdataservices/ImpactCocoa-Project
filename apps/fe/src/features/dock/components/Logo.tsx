@@ -17,7 +17,7 @@ export const Logo = () => {
     >
       <StackItem
         onClick={() => switchTheme()}
-        name={<LogoSvg className="w-12" aria-label="Plugilo logo" />}
+        name={<LogoSvg className="w-12" aria-label="ThinkData logo" />}
         cover={
           <motion.div
             animate={
@@ -38,7 +38,7 @@ export const Logo = () => {
             <StarSvg className="w-4 h-4" aria-hidden="true" />
           </motion.div>
         }
-        aria-label="Plugilo home"
+        aria-label="ThinkData home"
       />
     </div>
   );

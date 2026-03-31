@@ -2,7 +2,6 @@ import { useCardHandlers, useDragHandlers } from '@/features/cards';
 import { ActiveCardDeck } from '@/features/cards/components';
 import { Dock } from '@/features/dock';
 import { useStackStore } from '@/features/stacks';
-import { AppModals, CreateMenu, ErrorToast } from '@/shared';
 import { useModalStore } from '@/shared/store/useModalStore';
 import { useEffect, useRef } from 'react';
 import { useAppStore } from './shared/store/useStore';
@@ -70,21 +69,12 @@ export default function App({ theme = 'light' }: AppProps) {
         onCloseModal={closeModal}
       />
 
-      {/* Error Toast with Liquid Glass Effect */}
-      <ErrorToast />
-
       {/* Bottom Navigation - Always visible */}
       <Dock
         isDraggingCard={isDraggingToStacks}
         hoveredStackId={hoveredStackId}
         onStackDrop={handleStackDrop}
       />
-
-      {/* Create Menu */}
-      <CreateMenu />
-
-      {/* App Modals */}
-      <AppModals />
     </main>
   );
 }

@@ -1,4 +1,3 @@
-import { RoundButton } from '@/shared/components/RoundButton';
 import { useEffect, useRef, useState } from 'react';
 import ThreeDotsSvg from '~/public/icons/three-dots.svg?react';
 import type { Card } from '../types';
@@ -73,15 +72,16 @@ export function CardItem({
         <div className="flex gap-2 items-center">
           <h3 className="text-base font-bold text-gray-900 flex-1 truncate">{card.name}</h3>
           <div className="relative pointer-events-auto" ref={menuRef}>
-            <RoundButton
-              className="flex-shrink-0"
+            <button
+              type="button"
+              className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all"
               onClick={handleMenuClick}
               aria-label="Card options menu"
               aria-expanded={isMenuOpen}
               aria-haspopup="menu"
             >
               <ThreeDotsSvg className="w-4 h-4 text-gray-600" aria-hidden="true" />
-            </RoundButton>
+            </button>
             {isMenuOpen && (
               <div
                 role="menu"

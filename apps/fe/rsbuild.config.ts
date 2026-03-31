@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
   },
   html: {
-    title: 'plugilo.ai',
+    title: 'ThinkData',
     favicon: './public/favicon.ico',
   },
   output: {
