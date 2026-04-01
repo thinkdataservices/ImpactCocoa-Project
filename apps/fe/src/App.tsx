@@ -1,80 +1,31 @@
-import { useCardHandlers, useDragHandlers } from '@/features/cards';
-import { ActiveCardDeck } from '@/features/cards/components';
-import { Dock } from '@/features/dock';
-import { useStackStore } from '@/features/stacks';
-import { useModalStore } from '@/shared/store/useModalStore';
-import { useEffect, useRef } from 'react';
-import { useAppStore } from './shared/store/useStore';
+import { useNavigate } from 'react-router-dom';
+import { authClient } from '@/lib/auth-client';
+import { Button } from '@/components/ui/button';
+import { LogOut } from 'lucide-react';
 
-type AppProps = {
-  theme?: string;
-};
+export default function App() {
+  const navigate = useNavigate();
+  const { data: session } = authClient.useSession();
 
-export default function App({ theme = 'light' }: AppProps) {
-  // Global Setup
-  const { loadInitialData, setRootElement } = useAppStore();
-  const rootRef = useRef<HTMLElement>(null);
-  const { theme: currentTheme, switchTheme } = useAppStore();
-
-  useEffect(() => {
-    // Set root element reference for Shadow DOM support in drag handlers
-    if (rootRef.current) {
-      setRootElement(rootRef.current);
-    }
-    return () => setRootElement(null);
-  }, [setRootElement]);
-
-  useEffect(() => {
-    if (!currentTheme) {
-      switchTheme(theme);
-    } else if (currentTheme && rootRef.current) {
-      for (const className of rootRef.current.classList) {
-        rootRef.current.classList.remove(className);
-      }
-      rootRef.current.classList.add(currentTheme);
-    }
-  }, [currentTheme, theme, switchTheme]);
-
-  // Modal State
-  const { closeModal } = useModalStore();
-
-  // Data & Handlers
-  const activeStackId = useStackStore((state) => state.activeStackId);
-  
-  const { handleMoveCard } = useCardHandlers({ onSuccess: closeModal });
-
-  // Drag handlers
-  const {
-    isDraggingToStacks,
-    hoveredStackId,
-    startDragging,
-    stopDragging,
-    handleDragEndWithPosition,
-    handleDragPositionChange,
-    handleStackDrop,
-  } = useDragHandlers({ activeStackId, onMoveCard: handleMoveCard });
-
-  useEffect(() => {
-    loadInitialData();
-  }, [loadInitialData]);
+  const handleLogout = async () => {
+    await authClient.signOut();
+    navigate('/login');
+  };
 
   return (
-    <main ref={rootRef}>
-      {/* Card Deck - Only shown when a stack is selected */}
-      <ActiveCardDeck
-        onDragStart={startDragging}
-        onDragEnd={stopDragging}
-        onDragEndWithPosition={handleDragEndWithPosition}
-        onDragPositionChange={handleDragPositionChange}
-        onCloseModal={closeModal}
-      />
-
-      {/* Bottom Navigation - Always visible */}
-      <Dock
-        isDraggingCard={isDraggingToStacks}
-        hoveredStackId={hoveredStackId}
-        onStackDrop={handleStackDrop}
-      />
+    <main className="flex min-h-screen flex-col bg-background">
+      <header className="flex items-center justify-between border-border border-b px-8 py-4">
+        <span className="font-semibold text-base text-foreground">ThinkData</span>
+        <div className="flex items-center gap-3">
+          {session?.user && (
+            <span className="text-sm text-muted-foreground">{session.user.email}</span>
+          )}
+          <Button variant="outline" size="sm" onClick={handleLogout}>
+            <LogOut className="size-4" />
+            Logout
+          </Button>
+        </div>
+      </header>
     </main>
   );
 }

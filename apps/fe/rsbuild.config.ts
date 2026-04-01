@@ -9,7 +9,6 @@ export default defineConfig({
   },
   html: {
     title: 'ThinkData',
-    favicon: './public/favicon.ico',
   },
   output: {
     manifest: true,
