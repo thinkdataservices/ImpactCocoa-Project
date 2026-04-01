@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useIntl } from "react-intl";
+import { authClient } from "@/lib/auth-client";
 
 export function useForgotPasswordForm() {
   const intl = useIntl();
@@ -18,16 +19,19 @@ export function useForgotPasswordForm() {
     setIsLoading(true);
     setError("");
 
-    try {
-      // TODO: call forgot password API
-      console.log("Forgot password submit:", { email });
+    const { error: authError } = await authClient.forgetPassword({
+      email,
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
 
-      setSent(true);
-    } catch {
-      setError(t("error.generic"));
-    } finally {
+    if (authError) {
+      setError(authError.message || t("error.generic"));
       setIsLoading(false);
+      return;
     }
+
+    setSent(true);
+    setIsLoading(false);
   };
 
   return {

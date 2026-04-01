@@ -7,8 +7,10 @@ import App from './App';
 import {
   AuthLayout,
   ForgotPasswordForm,
+  GuestRoute,
   LoginForm,
   MagicLinkForm,
+  ProtectedRoute,
   ResetPasswordForm,
 } from './features/auth';
 import enMessages from './features/auth/i18n/en.json';
@@ -21,13 +23,20 @@ if (root) {
       <IntlProvider messages={enMessages} locale="en" defaultLocale="en">
         <BrowserRouter>
           <Routes>
-            <Route element={<AuthLayout />}>
-              <Route path="/login" element={<LoginForm />} />
-              <Route path="/forgot-password" element={<ForgotPasswordForm />} />
-              <Route path="/reset-password" element={<ResetPasswordForm />} />
-              <Route path="/magic-link" element={<MagicLinkForm />} />
+            {/* Guest-only routes (redirect to / if logged in) */}
+            <Route element={<GuestRoute />}>
+              <Route element={<AuthLayout />}>
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/forgot-password" element={<ForgotPasswordForm />} />
+                <Route path="/reset-password" element={<ResetPasswordForm />} />
+                <Route path="/magic-link" element={<MagicLinkForm />} />
+              </Route>
             </Route>
-            <Route path="/*" element={<App />} />
+
+            {/* Protected routes (redirect to /login if not logged in) */}
+            <Route element={<ProtectedRoute />}>
+              <Route path="/*" element={<App />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </IntlProvider>

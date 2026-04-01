@@ -5,7 +5,7 @@
       "name": "fe",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "fe", "dev"],
-      "port": 3000
+      "port": 3030
     }
   ]
 }

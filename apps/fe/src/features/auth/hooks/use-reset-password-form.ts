@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useIntl } from "react-intl";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { authClient } from "@/lib/auth-client";
 
 export function useResetPasswordForm() {
   const intl = useIntl();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token") || "";
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -36,21 +40,29 @@ export function useResetPasswordForm() {
       return;
     }
 
+    if (!token) {
+      setError(t("error.generic"));
+      return;
+    }
+
     setIsLoading(true);
 
-    try {
-      // TODO: call reset password API
-      console.log("Reset password:", { password });
+    const { error: authError } = await authClient.resetPassword({
+      newPassword: password,
+      token,
+    });
 
-      setSuccess(true);
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
-    } catch {
-      setError(t("error.generic"));
-    } finally {
+    if (authError) {
+      setError(authError.message || t("error.generic"));
       setIsLoading(false);
+      return;
     }
+
+    setSuccess(true);
+    setIsLoading(false);
+    setTimeout(() => {
+      navigate("/login");
+    }, 3000);
   };
 
   return {

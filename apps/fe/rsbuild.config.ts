@@ -5,7 +5,7 @@ import { pluginSvgr } from '@rsbuild/plugin-svgr';
 export default defineConfig({
   plugins: [pluginReact(), pluginSvgr()],
   server: {
-    port: 3000,
+    port: Number(process.env.PORT) || 3030,
   },
   html: {
     title: 'ThinkData',

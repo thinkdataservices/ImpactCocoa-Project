@@ -1,11 +1,7 @@
 import { useState } from "react";
 import { useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
-
-export interface LoginFormValues {
-  email: string;
-  password: string;
-}
+import { authClient } from "@/lib/auth-client";
 
 export function useLoginForm() {
   const intl = useIntl();
@@ -24,17 +20,18 @@ export function useLoginForm() {
     setIsSubmitting(true);
     setError("");
 
-    try {
-      // TODO: call auth API
-      console.log("Login submit:", { email, password });
+    const { error: authError } = await authClient.signIn.email({
+      email,
+      password,
+    });
 
-      // TODO: on success, navigate to dashboard
-      // navigate("/dashboard");
-    } catch {
-      setError(t("error.generic"));
-    } finally {
+    if (authError) {
+      setError(authError.message || t("error.generic"));
       setIsSubmitting(false);
+      return;
     }
+
+    navigate("/");
   };
 
   return {

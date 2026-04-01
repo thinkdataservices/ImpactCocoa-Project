@@ -11,6 +11,10 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 8,
+    sendResetPassword: async ({ user, url }) => {
+      // TODO: integrate email provider (nodemailer, resend, etc.)
+      console.log(`[Reset Password] ${user.email}: ${url}`);
+    },
   },
   plugins: [
     magicLink({
@@ -20,5 +24,5 @@ export const auth = betterAuth({
       },
     }),
   ],
-  trustedOrigins: ['http://localhost:3000', 'https://thinkdata.creativext.com'],
+  trustedOrigins: [process.env.FE_URL || 'http://localhost:3030', 'https://thinkdata.creativext.com'],
 });

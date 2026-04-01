@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useIntl } from "react-intl";
+import { authClient } from "@/lib/auth-client";
 
 export function useMagicLinkForm() {
   const intl = useIntl();
@@ -18,16 +19,19 @@ export function useMagicLinkForm() {
     setIsLoading(true);
     setError("");
 
-    try {
-      // TODO: call magic link API
-      console.log("Magic link submit:", { email });
+    const { error: authError } = await authClient.signIn.magicLink({
+      email,
+      callbackURL: "/",
+    });
 
-      setSent(true);
-    } catch {
-      setError(t("error.generic"));
-    } finally {
+    if (authError) {
+      setError(authError.message || t("error.generic"));
       setIsLoading(false);
+      return;
     }
+
+    setSent(true);
+    setIsLoading(false);
   };
 
   return {
