@@ -28,7 +28,7 @@ export function LocaleSwitcher({ locale, onLocaleChange }: LocaleSwitcherProps) 
       <PopoverContent
         align="end"
         sideOffset={2}
-        className="w-[160px] border-border/50 p-1 shadow-lg"
+        className="w-[160px] p-1"
         showArrow
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
