@@ -30,7 +30,7 @@ export function UserMenu() {
       </PopoverTrigger>
       <PopoverContent
         align="end"
-        sideOffset={2}
+        sideOffset={0}
         className="w-[220px] p-0"
         showArrow
         onOpenAutoFocus={(e) => e.preventDefault()}
