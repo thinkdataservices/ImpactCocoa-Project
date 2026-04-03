@@ -4,7 +4,6 @@ import { authClient } from "@/lib/auth-client";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -64,21 +63,6 @@ export function AppSidebar() {
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <SidebarFooter>
-        <div className="flex items-center gap-3 px-2 py-2">
-          <div className="flex size-8 items-center justify-center rounded-full bg-muted text-xs font-medium text-muted-foreground">
-            {initials}
-          </div>
-          <div className="flex flex-col overflow-hidden">
-            <span className="truncate text-sm font-medium text-sidebar-foreground">
-              {user?.name ?? "User"}
-            </span>
-            <span className="truncate text-xs text-muted-foreground">
-              {user?.email ?? ""}
-            </span>
-          </div>
-        </div>
-      </SidebarFooter>
     </Sidebar>
   );
 }
