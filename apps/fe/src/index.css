@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @source "./**/*.{ts,tsx}";
 
+@layer base {
+  *, ::after, ::before {
+    border-color: var(--color-border, currentColor);
+  }
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
