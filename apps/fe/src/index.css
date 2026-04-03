@@ -113,7 +113,6 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;

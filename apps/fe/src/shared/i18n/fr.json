@@ -1,0 +1,19 @@
+{
+  "sidebar.main": "Principal",
+  "sidebar.operations": "Opérations",
+  "sidebar.compliance": "Conformité",
+  "sidebar.admin": "Administration",
+
+  "navigation.dashboard": "Tableau de bord",
+  "navigation.farmers": "Agriculteurs",
+  "navigation.farmMap": "Carte des fermes",
+  "navigation.inspections": "Inspections",
+  "navigation.traceability": "Traçabilité",
+  "navigation.training": "Formation",
+  "navigation.eudr": "Statut EUDR",
+  "navigation.reports": "Rapports",
+  "navigation.adminUsers": "Utilisateurs & Rôles",
+  "navigation.adminCooperatives": "Coopératives",
+  "navigation.adminSync": "Synchronisation",
+  "navigation.adminAudit": "Journal d'audit"
+}

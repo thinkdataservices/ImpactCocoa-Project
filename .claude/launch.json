@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "fe",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "fe", "dev"],
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": ["-c", "export NVM_DIR=$HOME/.nvm && . $NVM_DIR/nvm.sh && cd apps/fe && pnpm dev"],
       "port": 3030
     }
   ]

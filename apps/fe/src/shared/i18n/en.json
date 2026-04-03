@@ -1,0 +1,19 @@
+{
+  "sidebar.main": "Main",
+  "sidebar.operations": "Operations",
+  "sidebar.compliance": "Compliance",
+  "sidebar.admin": "Administration",
+
+  "navigation.dashboard": "Dashboard",
+  "navigation.farmers": "Farmers",
+  "navigation.farmMap": "Farm Map",
+  "navigation.inspections": "Inspections",
+  "navigation.traceability": "Traceability",
+  "navigation.training": "Training",
+  "navigation.eudr": "EUDR Status",
+  "navigation.reports": "Reports",
+  "navigation.adminUsers": "Users & Roles",
+  "navigation.adminCooperatives": "Cooperatives",
+  "navigation.adminSync": "Data Sync",
+  "navigation.adminAudit": "Audit Log"
+}
